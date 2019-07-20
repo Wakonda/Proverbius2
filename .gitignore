@@ -20,8 +20,11 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
+/public/photo/biography/
 /public/photo/country/
+/public/photo/language/
 /public/photo/page/
 /public/photo/proverb/
+/public/photo/store/
 /public/photo/user/
 /public/photo/version/
