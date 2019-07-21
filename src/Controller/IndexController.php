@@ -162,7 +162,7 @@ class IndexController extends Controller
 
 		$html2pdf = new Html2Pdf('P','A4','fr');
 		$html2pdf->WriteHTML($content);
-;
+
 		$file = $html2pdf->Output('proverb.pdf');
 		$response = new Response($file);
 		$response->headers->set('Content-Type', 'application/pdf');
@@ -195,7 +195,7 @@ class IndexController extends Controller
 		return $this->render('Index/country.html.twig', array('entity' => $entity));
 	}
 
-	public function countryDatatablesAction(Request $request, $countryId)
+	public function countryDatatablesAction(Request $request, TranslatorInterface $translator, $countryId)
 	{
 		$iDisplayStart = $request->query->get('iDisplayStart');
 		$iDisplayLength = $request->query->get('iDisplayLength');
@@ -229,7 +229,7 @@ class IndexController extends Controller
 			$row = array();
 			$row[] = $entity["proverb_text"];
 			$show = $this->generateUrl('read', array('id' => $entity["proverb_id"], 'slug' => $entity["proverb_slug"]));
-			$row[] = '<a href="'.$show.'" alt="Show">Lire</a>';
+			$row[] = '<a href="'.$show.'" alt="Show">'.$translator->trans("country.table.Read").'</a>';
 
 			$output['aaData'][] = $row;
 		}
@@ -301,7 +301,7 @@ class IndexController extends Controller
 		return $this->render('Index/letter.html.twig', array('letter' => $letter));
 	}
 
-	public function letterDatatablesAction(Request $request, $letter)
+	public function letterDatatablesAction(Request $request, TranslatorInterface $translator, $letter)
 	{
 		$iDisplayStart = $request->query->get('iDisplayStart');
 		$iDisplayLength = $request->query->get('iDisplayLength');
@@ -335,7 +335,7 @@ class IndexController extends Controller
 			$row = array();
 			$row[] = $entity["proverb_text"];
 			$show = $this->generateUrl('read', array('id' => $entity["proverb_id"], 'slug' => $entity["proverb_slug"]));
-			$row[] = '<a href="'.$show.'" alt="Show">Lire</a>';
+			$row[] = '<a href="'.$show.'" alt="Show">'.$translator->trans("alphabetBook.table.Read").'</a>';
 
 			$output['aaData'][] = $row;
 		}
