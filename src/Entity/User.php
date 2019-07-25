@@ -88,6 +88,11 @@ class User implements UserInterface, \Serializable
         $this->roles = implode(",", $roles);
     }
 
+	public function __toString()
+	{
+		return $this->username;
+	}
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {
