@@ -155,7 +155,7 @@
 	{% endif %}
 	<hr>
 	<p>
-	<a href="{{ path('country', {'id' : entity.country.id, 'slug' : entity.country.slug }) }}" alt=""><img class="flag" src="{{ asset('photo/country/'~entity.country.flag) }}" alt="" height="8" /> Proverbe - {{ entity.country.title }}</a>
+	<a href="{{ path('country', {'id' : entity.country.id, 'slug' : entity.country.slug }) }}" alt=""><img class="flag" src="{{ asset('photo/country/'~entity.country.flag) }}" alt="" height="8" /> {{ "proverb.read.Proverb"|trans }} - {{ entity.country.title }}</a>
 	</p>
 	
 	<div class="social_network_container">
@@ -235,11 +235,11 @@
 		<div id="proverb_browsing" class="hidden_print">
 			<hr>
 			{% if(browsingProverbs['previous'] is not empty) %}
-				<span data-nav-action="Précédent" data-nav-title="{{ browsingProverbs['previous']['text'] }}" id="previous_data"><a href="{{ path('read', {'id' : browsingProverbs['previous']['id'], 'slug' : browsingProverbs['previous']['slug']}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></span>
+				<span data-nav-action="Précédent" data-nav-title="{{ browsingProverbs['previous']['text'] }}" id="previous_data"><a href="{{ path('read', {'id' : browsingProverbs['previous']['id'], 'slug' : browsingProverbs['previous']['slug']}) }}"><i class="fa fa-arrow-circle-left"></i> {{ "proverb.browsing.Previous"|trans }}</a></span>
 			{% endif %}
 			
 			{% if(browsingProverbs['next'] is not empty) %}
-				<span data-nav-action="Suivant" data-nav-title="{{ browsingProverbs['next']['text'] }}" class="float-right" id="next_data"><a href="{{ path('read', {'id' : browsingProverbs['next']['id'], 'slug' : browsingProverbs['next']['slug']}) }}">Suivant <i class="fa fa-arrow-circle-right"></i></a></span>
+				<span data-nav-action="Suivant" data-nav-title="{{ browsingProverbs['next']['text'] }}" class="float-right" id="next_data"><a href="{{ path('read', {'id' : browsingProverbs['next']['id'], 'slug' : browsingProverbs['next']['slug']}) }}">{{ "proverb.browsing.Next"|trans }} <i class="fa fa-arrow-circle-right"></i></a></span>
 			{% endif %}
 		</div>
 		<div style="clear: both;"></div>

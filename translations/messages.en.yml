@@ -67,6 +67,9 @@ proverb:
     read:
         InPictures: "In pictures ..."
         Proverb: "Proverb"
+    browsing:
+        Next: "Suivant"
+        Previous: "Précédent"
 search:
     result:
         Search: "Search"
