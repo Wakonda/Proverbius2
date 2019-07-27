@@ -64,7 +64,7 @@ class UserController extends Controller
 	{
 		$entityManager = $this->getDoctrine()->getManager();
 		if(!empty($username))
-			$entity = $entityManager->getRepository(User::class)->findOneByName(["username" => $username]);
+			$entity = $entityManager->getRepository(User::class)->findOneBy(["username" => $username]);
 		else
 			$entity = $tokenStorage->getToken()->getUser();
 
