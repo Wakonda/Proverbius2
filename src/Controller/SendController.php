@@ -57,7 +57,7 @@ class SendController extends Controller
 
 		$res = array("result" => "error");
 		
-		$res["content"] = $this->render('Index/send_form.html.twig', array('form' => $form->createView(), 'id' => $id));
+		$res["content"] = $this->render('Index/send_form.html.twig', array('form' => $form->createView(), 'id' => $id))->getContent();;
 		
 		$response = new Response(json_encode($res));
 		$response->headers->set('Content-Type', 'application/json');
