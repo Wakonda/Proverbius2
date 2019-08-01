@@ -59,6 +59,6 @@
 		<a href="{{ path('country', {'id' : random.country.id, 'slug' : random.country.slug }) }}" alt=""><img class="flag" src="{{ asset('photo/country/'~random.country.flag) }}" alt="" height="8" /> Proverbe - {{ random.country.title }}</a>
 		</p>
 	{% else %}
-		<p>{{ 'main.index.NoProverb'|trans }}.</p>
+		<div class="alert alert-danger text-center" role="alert">{{ 'main.index.NoProverb'|trans }}</div>
 	{% endif %}
 {% endblock %}
