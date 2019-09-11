@@ -222,8 +222,8 @@ vote:
         Votes: "Votes"
     field:
         Error: "Error"
-        YouMustBeLoggedInToVote: "You must be logged in to vote!"
-        YouHaveAlreadyVotedForThisProverb: "You have already voted for this proverb"
+        YouMustBeLoggedInToVote: "You must be logged in to vote!"
+        YouHaveAlreadyVotedForThis: "You have already voted for this proverb"
 version:
     index:
         Version: "Version"

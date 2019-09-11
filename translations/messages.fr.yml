@@ -223,7 +223,7 @@ vote:
     field:
         Error: "Erreur"
         YouMustBeLoggedInToVote: "Vous devez être connecté pour pouvoir voter !"
-        YouHaveAlreadyVotedForThisPoem: "Vous avez déjà voté pour cette poésie"
+        YouHaveAlreadyVotedForThis: "Vous avez déjà voté pour cette poésie"
 version:
     index:
         Version: "Version"

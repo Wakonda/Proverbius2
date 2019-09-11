@@ -39,7 +39,7 @@ class VoteController extends Controller
 				$numberOfDoubloons = $entityManager->getRepository(Vote::class)->checkIfUserAlreadyVote($id, $userDb->getId());
 				
 				if($numberOfDoubloons >= 1)
-					$state = $translator->trans("YouHaveAlreadyVotedForThisProverb");
+					$state = $translator->trans("vote.field.YouHaveAlreadyVotedForThis");
 				else
 				{
 					$entityManager->persist($entity);
@@ -47,7 +47,7 @@ class VoteController extends Controller
 				}
 			}
 			else
-				$state = $translator->trans("YouMustBeLoggedInToVote");
+				$state = $translator->trans("vote.field.YouMustBeLoggedInToVote");
 		}
 
 		$up_values = $entityManager->getRepository(Vote::class)->countVoteByProverb($id, 1);
