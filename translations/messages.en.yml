@@ -70,6 +70,10 @@ proverb:
     browsing:
         Next: "Suivant"
         Previous: "Précédent"
+tag:
+    table:
+        Text: "Text"
+        Country: "Country"
 search:
     result:
         Search: "Search"
@@ -284,6 +288,7 @@ admin:
         Country: "Country"
         ProxyAddress: "Proxy address"
         ForSameCountry: "for the same country"
+        Tags: "Tags"
     proverbImage:
         Image: "Image"
         Share: "Share"
@@ -291,6 +296,10 @@ admin:
         Title: "Title"
         InternationalName: "International name"
         Flag: "Flag"
+    tag:
+        Title: "Title"
+        Photo: "Photo"
+        InternationalName: "International name"
     contact:
         Message: "Message"
         Email: "Email"

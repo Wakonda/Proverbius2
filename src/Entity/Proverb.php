@@ -43,6 +43,11 @@ class Proverb
     * @ORM\OneToMany(targetEntity=ProverbImage::class, cascade={"persist", "remove"}, mappedBy="proverb", orphanRemoval=true)
     */
     protected $proverbImages;
+
+   /**
+    * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="proverbs", cascade={"persist"})
+    */
+	protected $tags;
 	
     public function __construct()
     {
@@ -145,4 +150,44 @@ class Proverb
         $proverbImage->setProverb(null);
         $this->proverbImages->removeElement($proverbImage);
     }
+	
+   /**
+    * Add tags
+    *
+    * @param Tag $tags
+    */
+	public function addTag(Tag $tag)
+	{
+		$this->tags[] = $tag;
+	}
+
+    /**
+     * Set tags
+     *
+     * @param string $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+   /**
+    * Remove tags
+    *
+    * @param Tag $tag
+    */
+	public function removeTag(Tag $tag)
+	{
+		$this->tags->removeElement($tag);
+	}
+
+   /**
+    * Get tags
+    *
+    * @return Doctrine\Common\Collections\Collection
+    */
+	public function getTags()
+	{
+		return $this->tags;
+	}
 }

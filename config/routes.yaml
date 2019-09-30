@@ -28,6 +28,16 @@ read_pdf:
     defaults:
         slug: null
 
+tag:
+    path: /tag/{id}/{slug}
+    controller: App\Controller\IndexController::tagAction
+    defaults:
+        slug: null
+
+tag_datatables:
+    path: /tag_poem_datatables/{tagId}
+    controller: App\Controller\IndexController::tagDatatablesAction
+
 author:
     path: /author/{id}/{slug}
     controller: App\Controller\IndexController::authorAction
@@ -250,35 +260,6 @@ user_forgottenpasswordsend:
     path: /user/forgottenpasswordsend
     controller: App\Controller\UserController::forgottenPasswordSendAction
 
-# ADMIN COUNTRY
-countryadmin_index:
-    path: /admin/country/index
-    controller: App\Controller\CountryAdminController::indexAction
-
-countryadmin_indexdatatables:
-    path: /admin/country/indexdatatables
-    controller: App\Controller\CountryAdminController::indexDatatablesAction
-
-countryadmin_new:
-    path: /admin/country/new
-    controller: App\Controller\CountryAdminController::newAction
-
-countryadmin_create:
-    path: /admin/country/create
-    controller: App\Controller\CountryAdminController::createAction
-
-countryadmin_show:
-    path: /admin/country/show/{id}
-    controller: App\Controller\CountryAdminController::showAction
-
-countryadmin_edit:
-    path: /admin/country/edit/{id}
-    controller: App\Controller\CountryAdminController::editAction
-
-countryadmin_update:
-    path: /admin/country/upate/{id}
-    controller: App\Controller\CountryAdminController::updateAction
-
 # ADMIN TAG
 tagadmin_index:
     path: /admin/tag/index
@@ -307,6 +288,39 @@ tagadmin_edit:
 tagadmin_update:
     path: /admin/tag/upate/{id}
     controller: App\Controller\TagAdminController::updateAction
+
+tagadmin_gettagsbyajax:
+    path: /admin/tag/gettagsbyajax
+    controller: App\Controller\TagAdminController::getTagsByAjaxAction
+
+# ADMIN COUNTRY
+countryadmin_index:
+    path: /admin/country/index
+    controller: App\Controller\CountryAdminController::indexAction
+
+countryadmin_indexdatatables:
+    path: /admin/country/indexdatatables
+    controller: App\Controller\CountryAdminController::indexDatatablesAction
+
+countryadmin_new:
+    path: /admin/country/new
+    controller: App\Controller\CountryAdminController::newAction
+
+countryadmin_create:
+    path: /admin/country/create
+    controller: App\Controller\CountryAdminController::createAction
+
+countryadmin_show:
+    path: /admin/country/show/{id}
+    controller: App\Controller\CountryAdminController::showAction
+
+countryadmin_edit:
+    path: /admin/country/edit/{id}
+    controller: App\Controller\CountryAdminController::editAction
+
+countryadmin_update:
+    path: /admin/country/upate/{id}
+    controller: App\Controller\CountryAdminController::updateAction
 
 # ADMIN PROVERBIMAGE
 proverbimageadmin_index:

@@ -27,7 +27,8 @@ h1{
 	position: relative;
 	font-weight: 300;
 	color: #333;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);}
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
 
 h1 span{
 	font-weight: 700;
@@ -55,6 +56,10 @@ Main Styles
 #Wrapper2{ overflow:hidden; border:1px dotted #ddd; background-color: white;}
 #header {
 	width: 100%;
+}
+
+fieldset legend {
+	font-size: 1.1rem;
 }
 
 header h1{
@@ -109,7 +114,6 @@ article
 	-webkit-font-smoothing: antialiased;
 	border-bottom: 6px solid transparent;
 	text-rendering: optimizeLegibility;
-	
 }
 
 #title h1 a:hover {
@@ -264,7 +268,7 @@ width:80px;
 @media screen and (min-width: 761px) and (max-width: 860px) {
 	#Wrapper{ width: 740px; margin:0px auto;}
 	#navigation ul li a{ font-size:12px; padding:0px 11px;}
-	#contents h1{ font-size:30px; text-align:left; line-height:30px;}
+	#contents h1{ text-align:left; line-height:30px;}
 }
 
 @media screen and (min-width: 641px) and (max-width: 760px) {	
@@ -277,7 +281,7 @@ width:80px;
 	width: 70%;
 	font-size:16px;
 	}
-	#contents h1{ font-size:25px; text-align:left; line-height:30px;}
+	#contents h1{ text-align:left; line-height:30px;}
 	#comments h1,.sidebar h1{ font-size:16px; text-align:left; line-height:normal;}
 	#sidebar-wrapper {
 	float: left; font-size:14px;
@@ -296,7 +300,7 @@ width:80px;
 	width: 100%;
 	font-size:14px;position:relative;
 	}
-	#contents h1{ font-size:22px; text-align:left; font-weight:bold; line-height:normal;}
+	#contents h1{ text-align:left; font-weight:bold; line-height:normal;}
 	#comments h1,.sidebar h1{ font-size:15px; text-align:left; line-height:normal;}
 	#sidebar-wrapper {
 	float: none; font-size:14px;
@@ -316,7 +320,7 @@ width:80px;
 	width: 100%;
 	font-size:14px;position:relative;
 	}
-	#contents h1{ font-size:18px; text-align:left; font-weight:bold; line-height:normal;}
+	#contents h1{ text-align:left; font-weight:bold; line-height:normal;}
 	#comments h1,.sidebar h1{ font-size:14px; text-align:left; line-height:normal;}
 	#sidebar-wrapper {
 	float: none; font-size:13px;
@@ -334,7 +338,7 @@ width:80px;
 	width: 95%;
 	font-size:14px;position:relative;
 	}
-	#contents h1{ font-size:16px; text-align:left; font-weight:bold; line-height:normal; }
+	#contents h1{ text-align:left; font-weight:bold; line-height:normal; }
 	#comments h1,.sidebar h1{ font-size:14px; text-align:left; line-height:normal;}
 	#sidebar-wrapper {
 	float: none; font-size:13px;

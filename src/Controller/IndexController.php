@@ -23,6 +23,7 @@ use App\Entity\Page;
 use App\Entity\Store;
 use App\Entity\Language;
 use App\Entity\Biography;
+use App\Entity\Tag;
 
 use Spipu\Html2Pdf\Html2Pdf;
 use MatthiasMullie\Minify;
@@ -129,7 +130,64 @@ class IndexController extends Controller
 
 		return $this->render('Index/read.html.twig', array('entity' => $entity, 'browsingProverbs' => $browsingProverbs, 'image' => $image));
 	}
+
+	// TAG
+	public function tagAction(Request $request, $id)
+	{
+		$entityManager = $this->getDoctrine()->getManager();
+		$entity = $entityManager->getRepository(Tag::class)->find($id);
+
+		return $this->render('Index/tag.html.twig', array('entity' => $entity));
+	}
 	
+	public function tagDatatablesAction(Request $request, $tagId)
+	{
+		$iDisplayStart = $request->query->get('iDisplayStart');
+		$iDisplayLength = $request->query->get('iDisplayLength');
+		$sSearch = $request->query->get('sSearch');
+
+		$sortByColumn = array();
+		$sortDirColumn = array();
+			
+		for($i=0 ; $i < intval($request->query->get('iSortingCols')); $i++)
+		{
+			if ($request->query->get('bSortable_'.intval($request->query->get('iSortCol_'.$i))) == "true" )
+			{
+				$sortByColumn[] = $request->query->get('iSortCol_'.$i);
+				$sortDirColumn[] = $request->query->get('sSortDir_'.$i);
+			}
+		}
+
+		$entityManager = $this->getDoctrine()->getManager();
+		$entities = $entityManager->getRepository(Proverb::class)->getEntityByTagDatatables($iDisplayStart, $iDisplayLength, $sortByColumn, $sortDirColumn, $sSearch, $tagId);
+		$iTotal = $entityManager->getRepository(Proverb::class)->getEntityByTagDatatables($iDisplayStart, $iDisplayLength, $sortByColumn, $sortDirColumn, $sSearch, $tagId, true);
+
+		$output = array(
+			"sEcho" => $request->query->get('sEcho'),
+			"iTotalRecords" => $iTotal,
+			"iTotalDisplayRecords" => $iTotal,
+			"aaData" => array()
+		);
+		
+		foreach($entities as $entity)
+		{
+			$row = array();
+
+			$show = $this->generateUrl('read', array('id' => $entity->getId(), 'slug' => $entity->getSlug()));
+			$country = $entity->getCountry();
+			
+			$row[] = '<a href="'.$show.'" alt="Show">'.$entity->getText().'</a>';
+			$row[] = '<img src="'.$request->getBaseUrl().'/photo/country/'.$country->getFlag().'" class="flag">';
+
+			$output['aaData'][] = $row;
+		}
+
+		$response = new Response(json_encode($output));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
+	}
+	// END TAG
+
 	public function byImagesAction(Request $request)
 	{
 		$entityManager = $this->getDoctrine()->getManager();

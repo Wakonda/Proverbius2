@@ -99,6 +99,41 @@ class ProverbRepository extends ServiceEntityRepository implements iRepository
 		return $qb->getQuery()->getResult();
     }
 
+	public function getEntityByTagDatatables($iDisplayStart, $iDisplayLength, $sortByColumn, $sortDirColumn, $sSearch, $tagId, $count = false)
+	{
+		$qb = $this->createQueryBuilder("pf");
+
+		$aColumns = array('pf.text', 'co.title');
+
+		$qb->leftjoin("pf.country", "co")
+		   ->leftjoin("pf.tags", "bo")
+		   ->where("bo.id = :id")
+		   ->setParameter("id", $tagId);
+		
+		if(!empty($sortDirColumn))
+		   $qb->orderBy($aColumns[$sortByColumn[0]], $sortDirColumn[0]);
+
+		if(!empty($sSearch))
+		{
+			$search = "%".$sSearch."%";
+			$qb->andWhere('pf.title LIKE :search')
+			   ->setParameter('search', $search);
+		}
+		if($count)
+		{
+			$qb->select("COUNT(DISTINCT pf.id) AS count");
+			return $qb->getQuery()->getSingleScalarResult();
+		}
+		else
+		{
+			$qb->groupBy("pf.id")
+			   ->setFirstResult($iDisplayStart)
+			   ->setMaxResults($iDisplayLength);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
+
     public function findProverbByLetter($letter, $locale, $count = false)
     {
 		$qb = $this->createQueryBuilder("pa");
