@@ -15,7 +15,10 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset(minify_file('css/style.css')) }}" media="screen" />
 		<link rel="stylesheet" type="text/css" href="{{ asset(minify_file('css/style_print.css')) }}" media="print" />
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-4.2.1-dist/css/bootstrap.min.css') }}" media="screen" />
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/css/fontawesome.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/css/solid.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/css/brands.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/css/regular.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ asset(minify_file('js/BackToTop/BackToTop.css')) }}" />
 			
 		{% block style_additional %}
@@ -46,7 +49,7 @@
 
 				<!-- Nav Element Starts Here -->
 				<nav class="navigation">
-					<a href="{{ path('index') }}"><i class="fa fa-home"></i> {{ 'menu.top.MainPage'|trans }}</a>
+					<a href="{{ path('index') }}"><i class="fas fa-home"></i> {{ 'menu.top.MainPage'|trans }}</a>
 					<a href="{{ path('bycountries') }}">{{ 'menu.top.Countries'|trans }}</a>
 					<a href="{{ path('byletters') }}">{{ 'menu.top.AlphabetBook'|trans }}</a>
 					<a href="{{ path('store') }}">{{ 'menu.top.Store'|trans }}</a>
@@ -63,19 +66,19 @@
 						{{ render(controller('App\\Controller\\IndexController::lastAction')) }}
 						
 						<div class="social-media-icons">
-							<a class="facebook" href="https://www.facebook.com/Proverbius-1894996570590486" target="_blank"><i class="fa fa-facebook-square fa-3x"></i></a>
+							<a class="facebook" href="https://www.facebook.com/Proverbius-1894996570590486" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
 							{% if app.request.locale == "en" %}
-							<a class="twitter" href="https://twitter.com/ProverbiusE" target="_blank"><i class="fa fa-twitter-square fa-3x"></i></a>
+							<a class="twitter" href="https://twitter.com/ProverbiusE" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
 							{% elseif app.request.locale == "fr" %}
-							<a class="twitter" href="https://twitter.com/poeticus12" target="_blank"><i class="fa fa-twitter-square fa-3x"></i></a>
+							<a class="twitter" href="https://twitter.com/poeticus12" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
 							{% endif %}
 							{% if app.request.locale == "fr" %}
-							<a class="pinterest" href="https://www.pinterest.ru/amatukamiproverbius/proverbes/" target="_blank"><i class="fa fa-pinterest-square fa-3x"></i></a>
+							<a class="pinterest" href="https://www.pinterest.ru/amatukamiproverbius/proverbes/" target="_blank"><i class="fab fa-pinterest-square fa-3x"></i></a>
 							{% elseif app.request.locale == "en" %}
-							<a class="pinterest" href="https://www.pinterest.ru/amatukamiproverbius/proverbs/" target="_blank"><i class="fa fa-pinterest-square fa-3x"></i></a>
+							<a class="pinterest" href="https://www.pinterest.ru/amatukamiproverbius/proverbs/" target="_blank"><i class="fab fa-pinterest-square fa-3x"></i></a>
 							{% endif %}
-							<a class="instagram" href="https://www.instagram.com/_proverbius/" target="_blank"><i class="fa fa-instagram fa-3x"></i></a> 
-							<a class="widget" style="color: #33b242;" href="{{ path('generate_widget') }}"><i class="fa fa-share-alt-square fa-3x"></i></a> 
+							<a class="instagram" href="https://www.instagram.com/_proverbius/" target="_blank"><i class="fab fa-instagram fa-3x"></i></a> 
+							<a class="widget" style="color: #33b242;" href="{{ path('generate_widget') }}"><i class="fas fa-share-alt-square fa-3x"></i></a> 
 						</div>
 						<h1>{{ 'menu.left.FollowUs'|trans }}</h1>
 						<span class="follow_on_twitter"><a href="https://twitter.com/poeticus12" class="twitter-follow-button" data-show-count="false" data-lang="fr" data-size="large" data-dnt="true">Suivre @poeticus12</a>

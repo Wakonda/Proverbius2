@@ -389,7 +389,7 @@ class UserController extends Controller
 			$row[] = '<a href="'.$show.'" alt="Show">'.$entity['text'].'</a>';
 			
 			list($icon, $color) = (($entity['vote'] == -1) ? array("fa-arrow-down", "red") : array("fa-arrow-up", "green"));
-			$row[] = "<i class='fa ".$icon."' aria-hidden='true' style='color: ".$color.";'></i>";
+			$row[] = "<i class='fas ".$icon."' aria-hidden='true' style='color: ".$color.";'></i>";
 
 			$output['aaData'][] = $row;
 		}
