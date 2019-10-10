@@ -266,6 +266,8 @@ admin:
         AddedSuccessfully: "%numberAdded% proverb(s) added, %numberDoubloons% duplication(s)"
         List: "List"
         Backup: "Backup"
+        MultipleEdition: "Multiple edition"
+        ChangesMadeSuccessfully: "Changes made successfully"
     error:
         UnknownURL: "Unknown URL"
     table:

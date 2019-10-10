@@ -6,10 +6,12 @@ use App\Entity\Proverb;
 use App\Entity\ProverbImage;
 use App\Entity\Country;
 use App\Entity\Language;
+use App\Entity\Tag;
 use App\Service\GenericFunction;
 use App\Service\ImageGenerator;
 use App\Form\Type\ProverbType;
 use App\Form\Type\ProverbFastMultipleType;
+use App\Form\Type\ProverbEditMultipleType;
 use App\Form\Type\ImageGeneratorType;
 use App\Service\PHPImage;
 use Symfony\Component\Form\FormError;
@@ -69,6 +71,7 @@ class ProverbAdminController extends Controller
 		foreach($entities as $entity)
 		{
 			$row = array();
+			$row["DT_RowId"] = $entity->getId();
 			$row[] = $entity->getId();
 			$row[] = $entity->getText();
 			$row[] = $entity->getLanguage()->getTitle();
@@ -169,6 +172,54 @@ class ProverbAdminController extends Controller
 		}
 	
 		return $this->render('Proverb/edit.html.twig', array('form' => $form->createView(), 'entity' => $entity));
+	}
+
+	public function editMultipleAction(Request $request)
+	{
+		$entityManager = $this->getDoctrine()->getManager();
+		$ids = json_decode($request->query->get("ids"));
+		$locale = $entityManager->getRepository(Language::class)->findOneBy(["abbreviation" => $request->getLocale()]);
+		$form = $this->createForm(ProverbEditMultipleType::class, null, array("locale" => $locale->getId()));
+
+		return $this->render('Proverb/editMultiple.html.twig', array('form' => $form->createView(), 'ids' => $ids));
+	}
+	
+	public function updateMultipleAction(Request $request, SessionInterface $session, TranslatorInterface $translator, $ids)
+	{
+		$entityManager = $this->getDoctrine()->getManager();
+		$ids = json_decode($ids);
+		$locale = $entityManager->getRepository(Language::class)->findOneBy(["abbreviation" => $request->getLocale()]);
+		$form = $this->createForm(ProverbEditMultipleType::class, null, array("locale" => $locale->getId()));
+		$form->handleRequest($request);
+
+		$req = $request->request->get($form->getName());
+
+		foreach($ids as $id)
+		{
+			$entity = $entityManager->getRepository(Proverb::class)->find($id);
+			$tagsId = $req["tags"];
+
+			foreach($tagsId as $tagId)
+			{
+				$tag = $entityManager->getRepository(Tag::class)->find($tagId);
+				$realTag = $entityManager->getRepository(Tag::class)->findOneBy(["internationalName" => $tag->getInternationalName(), "language" => $entity->getLanguage()]);
+				
+				if(!empty($realTag))
+				{
+					if(!$entity->isTagExisted($realTag))
+					{
+						$entity->addTag($realTag);
+						$entityManager->persist($entity);
+					}
+				}
+			}
+			
+			$entityManager->flush();
+		}
+		
+		$session->getFlashBag()->add('message', $translator->trans("admin.index.ChangesMadeSuccessfully"));
+
+		return $this->redirect($this->generateUrl('proverbadmin_index'));
 	}
 
 	public function newFastMultipleAction(Request $request)

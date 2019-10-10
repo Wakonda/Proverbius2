@@ -181,6 +181,15 @@ class Proverb
 		$this->tags->removeElement($tag);
 	}
 
+	public function isTagExisted(Tag $tag)
+	{
+		foreach($this->tags as $t)
+			if($tag->getId() == $t->getId())
+				return true;
+		
+		return false;
+	}
+
    /**
     * Get tags
     *

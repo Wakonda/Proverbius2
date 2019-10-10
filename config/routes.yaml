@@ -392,6 +392,14 @@ proverbadmin_remove_image:
     path: /admin/proverb/removeimage/{id}/{proverbImageId}
     controller: App\Controller\ProverbAdminController:removeImageAction
 
+proverbadmin_editmultiple:
+    path: /admin/proverb/editmultiple
+    controller: App\Controller\ProverbAdminController:editMultipleAction
+
+proverbadmin_updatemultiple:
+    path: /admin/proverb/updatemultiple/{ids}
+    controller: App\Controller\ProverbAdminController:updateMultipleAction
+
 # ADMIN PAGE
 pageadmin_index:
     path: /admin/page/index
