@@ -41,13 +41,13 @@ class IndexController extends Controller
 	
 	public function getToken($redirectURL)
 	{
-			if(!isset($_GET['code']))
-			{
-				header("Location: ".$loginUrl);
-				die;
-			}
+		if(!isset($_GET['code']))
+		{
+			header("Location: ".$loginUrl);
+			die;
+		}
 
-			return $_GET['code'];
+		return $_GET['code'];
 	}
 
 	public function changeLanguageAction(Request $request, $locale)

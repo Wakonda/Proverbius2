@@ -386,13 +386,13 @@ class ProverbAdminController extends Controller
 		$statues = $connection->post("statuses/update", $parameters);
 		
 		if(isset($statues->errors) and !empty($statues->errors))
-			$session->getFlashBag()->add('message', $translator->trans("admin.index.SentError"));
+			$session->getFlashBag()->add('message', "Twitter - ".$translator->trans("admin.index.SentError"));
 		else {
 			$proverbImage->addSocialNetwork("Twitter");
 			$entityManager->persist($proverbImage);
 			$entityManager->flush();
 		
-			$session->getFlashBag()->add('message', $translator->trans("admin.index.SentSuccessfully"));
+			$session->getFlashBag()->add('message', "Twitter - ".$translator->trans("admin.index.SentSuccessfully"));
 			
 		}
 	
@@ -437,7 +437,7 @@ class ProverbAdminController extends Controller
 		$bot->pins->create($request->getUriForPath('/photo/proverb/'.$proverbImage->getImage()), $boards[$i]['id'], $request->request->get("pinterest_area"), $this->generateUrl("read", ["id" => $entity->getId(), "slug" => $entity->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL));
 		
 		if(empty($bot->getLastError())) {
-			$session->getFlashBag()->add('message', $translator->trans("admin.index.SentSuccessfully"));
+			$session->getFlashBag()->add('message', "Pinterest - ".$translator->trans("admin.index.SentSuccessfully"));
 
 			$proverbImage->addSocialNetwork("Pinterest");
 			$entityManager->persist($proverbImage);
@@ -484,11 +484,11 @@ class ProverbAdminController extends Controller
 				$entityManager->persist($proverbImage);
 				$entityManager->flush();
 				
-				$session->getFlashBag()->add('message', $translator->trans("admin.index.SentSuccessfully"));
+				$session->getFlashBag()->add('message', "Facebook - ".$translator->trans("admin.index.SentSuccessfully"));
 			} catch(Facebook\Exceptions\FacebookResponseException $e) {
-				$session->getFlashBag()->add('message', $translator->trans("admin.index.SentError"));
+				$session->getFlashBag()->add('message', "Facebook - ".$translator->trans("admin.index.SentError"));
 			} catch(Facebook\Exceptions\FacebookSDKException $e) {
-				$session->getFlashBag()->add('message', $translator->trans("admin.index.SentError"));
+				$session->getFlashBag()->add('message', "Facebook - ".$translator->trans("admin.index.SentError"));
 			}
 		}
 
