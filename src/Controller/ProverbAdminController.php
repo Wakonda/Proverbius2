@@ -375,6 +375,8 @@ class ProverbAdminController extends Controller
 		$parameters = [];
 		$parameters["status"] = $request->request->get("twitter_area")." ".$this->generateUrl("read", array("id" => $id, 'slug' => $entity->getSlug()), UrlGeneratorInterface::ABSOLUTE_URL);
 		$imageId = $request->request->get('image_id_tweet');
+		
+		$proverbImage = null;
 
 		if(!empty($imageId)) {
 			$proverbImage = $entityManager->getRepository(ProverbImage::class)->find($imageId);
@@ -388,9 +390,11 @@ class ProverbAdminController extends Controller
 		if(isset($statues->errors) and !empty($statues->errors))
 			$session->getFlashBag()->add('message', "Twitter - ".$translator->trans("admin.index.SentError"));
 		else {
-			$proverbImage->addSocialNetwork("Twitter");
-			$entityManager->persist($proverbImage);
-			$entityManager->flush();
+			if(!empty($proverbImage)) {
+				$proverbImage->addSocialNetwork("Twitter");
+				$entityManager->persist($proverbImage);
+				$entityManager->flush();
+			}
 		
 			$session->getFlashBag()->add('message', "Twitter - ".$translator->trans("admin.index.SentSuccessfully"));
 			
