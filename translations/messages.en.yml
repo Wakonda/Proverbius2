@@ -68,8 +68,8 @@ proverb:
         InPictures: "In pictures ..."
         Proverb: "Proverb"
     browsing:
-        Next: "Suivant"
-        Previous: "Précédent"
+        Next: "Next"
+        Previous: "Previous"
 tag:
     table:
         Text: "Text"
