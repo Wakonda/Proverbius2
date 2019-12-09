@@ -514,7 +514,7 @@ class ProverbAdminController extends Controller
             $fileName = md5(uniqid()).'_'.$file->getClientOriginalName();
 			$text = $entity->getText();
 			
-			$font = realpath(__DIR__."/../../public").DIRECTORY_SEPARATOR.'font'.DIRECTORY_SEPARATOR.'source-serif-pro'.DIRECTORY_SEPARATOR.'SourceSerifPro-Regular.otf';
+			$font = realpath(__DIR__."/../../assets").DIRECTORY_SEPARATOR.'font'.DIRECTORY_SEPARATOR.'source-serif-pro'.DIRECTORY_SEPARATOR.'SourceSerifPro-Regular.otf';
 
 			if($data["version"] == "v1")
 			{
