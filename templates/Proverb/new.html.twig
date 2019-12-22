@@ -14,6 +14,8 @@
 		$(function()
 		{
 			$("select#{{ form.language.vars.id }}").change(function() {
+				$("#{{ form.tags.vars.id }}").empty().trigger('change');
+
 				$.ajax({
 					type: "GET",
 					url: "{{ path('get_countries_by_language') }}",
@@ -25,7 +27,6 @@
 						
 						for (var i = 0; i < data.length; i++) {
 							$("select#{{ form.country.vars.id }}").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
-							console.log(data[i]);
 						}
 					}
 				});

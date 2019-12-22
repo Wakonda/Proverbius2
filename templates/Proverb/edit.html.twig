@@ -26,6 +26,8 @@
 		$(function()
 		{
 			$("select#{{ form.language.vars.id }}").change(function() {
+				$("#{{ form.tags.vars.id }}").empty().trigger('change');
+
 				$.ajax({
 					type: "GET",
 					url: "{{ path('get_countries_by_language') }}",
