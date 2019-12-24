@@ -52,7 +52,8 @@ class ProverbImageRepository extends ServiceEntityRepository
 		$qb->join('ip.proverb', 'pf')
 		   ->join('pf.language', 'la')
 		   ->where('la.abbreviation = :locale')
-		   ->setParameter("locale", $locale);
+		   ->setParameter("locale", $locale)
+		   ->orderBy("ip.id", "DESC");
 
 		return $qb->getQuery();
 	}
