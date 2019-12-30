@@ -25,10 +25,10 @@ class ProverbFastMultipleType extends AbstractType
 
         $builder
 			->add('url', TextType::class, array(
-                'constraints' => [new Assert\NotBlank(), new Assert\Url()], 'label' => 'URL', 'mapped' => false
+                'constraints' => [new Assert\NotBlank(), new Assert\Url()], 'label' => 'URL', 'mapped' => false, "data" => $options["url"]
             ))
 			->add('ipProxy', TextType::class, array(
-                'label' => 'admin.proverb.ProxyAddress', 'required' => false, 'mapped' => false, 'constraints' => [new Assert\Regex("#^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{2,4}$#")]
+                'label' => 'admin.proverb.ProxyAddress', 'required' => false, 'mapped' => false, 'constraints' => [new Assert\Regex("#^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{2,4}$#")], "data" => $options["ipProxy"]
             ))
 			->add('language', EntityType::class, array(
 				'label' => 'admin.form.Language',
@@ -63,7 +63,9 @@ class ProverbFastMultipleType extends AbstractType
 	{
 		$resolver->setDefaults(array(
 			"data_class" => Proverb::class,
-			"locale" => null
+			"locale" => null,
+			"url" => null,
+			"ipProxy" => null
 		));
 	}
 

@@ -225,10 +225,23 @@ class ProverbAdminController extends Controller
 	public function newFastMultipleAction(Request $request)
 	{
 		$entityManager = $this->getDoctrine()->getManager();
+		$datas = $request->query->all();
+		$datas = !empty($datas) ? json_decode($datas["datas"], true) : null;
 		$entity = new Proverb();
-		$entity->setLanguage($entityManager->getRepository(Language::class)->findOneBy(["abbreviation" => $request->getLocale()]));
-		
-		$form = $this->createForm(ProverbFastMultipleType::class, $entity, ["locale" => $request->getLocale()]);
+
+		$url = null;
+		$ipProxy = null;
+
+		if(!empty($datas)) {
+			$entity->setLanguage($entityManager->getRepository(Language::class)->find($datas["language"]));
+			$entity->setBiography($entityManager->getRepository(Biography::class)->find($datas["biography"]));
+
+			$url = $datas["url"];
+			$ipProxy = $datas["ipProxy"];
+		} else
+			$entity->setLanguage($entityManager->getRepository(Language::class)->findOneBy(["abbreviation" => $request->getLocale()]));
+
+		$form = $this->createForm(ProverbFastMultipleType::class, $entity, ["locale" => $request->getLocale(), "url" => $url, "ipProxy" => $ipProxy]);
 
 		return $this->render('Proverb/fastMultiple.html.twig', array('form' => $form->createView(), "authorizedURLs" => $this->authorizedURLs));
 	}
@@ -351,8 +364,10 @@ class ProverbAdminController extends Controller
 			}
 
 			$session->getFlashBag()->add('message', $translator->trans("admin.index.AddedSuccessfully", ["%numberAdded%" => $numberAdded, "%numberDoubloons%" => $numberDoubloons]));
-	
-			return $this->redirect($this->generateUrl('proverbadmin_index'));
+
+			unset($req["_token"]);
+
+			return $this->redirect($this->generateUrl('proverbadmin_newfastmultiple', ["datas" => json_encode($req)]));
 		}
 		
 		return $this->render('Proverb/fastMultiple.html.twig', array('form' => $form->createView(), "authorizedURLs" => $this->authorizedURLs));
