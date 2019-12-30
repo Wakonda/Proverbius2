@@ -11,6 +11,8 @@ use App\Service\GenericFunction;
  */
 class Country
 {
+	const PATH_FILE = "photo/country/";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
