@@ -92,16 +92,6 @@ class Tag
 		$this->language = $language;
 	}
 
-   /**
-    * Get poems
-    *
-    * @return Doctrine\Common\Collections\Collection
-    */
-	public function getPoems()
-	{
-		return $this->poems;
-	}
-
     /**
      * Set internationalName
      *
