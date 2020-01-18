@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -29,7 +29,7 @@ use seregazhuk\PinterestBot\Factories\PinterestBot;
 
 require __DIR__.'/../../vendor/simple_html_dom.php';
 
-class ProverbAdminController extends Controller
+class ProverbAdminController extends AbstractController
 {
 	private $formName = "proverb";
 	private $authorizedURLs = ['d3d3LmxpbnRlcm5hdXRlLmNvbQ==', 'Y2l0YXRpb24tY2VsZWJyZS5sZXBhcmlzaWVuLmZy', 'ZGljb2NpdGF0aW9ucy5sZW1vbmRlLmZy', 'd3d3LnByb3ZlcmJlcy1mcmFuY2Fpcy5mcg==', 'Y3JlYXRpdmVwcm92ZXJicy5jb20=', 'd3d3LnNwZWNpYWwtZGljdGlvbmFyeS5jb20='];

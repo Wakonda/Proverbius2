@@ -6,7 +6,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -28,7 +28,7 @@ use App\Entity\Tag;
 use Spipu\Html2Pdf\Html2Pdf;
 use MatthiasMullie\Minify;
 
-class IndexController extends Controller
+class IndexController extends AbstractController
 {
     public function indexAction(Request $request)
     {
