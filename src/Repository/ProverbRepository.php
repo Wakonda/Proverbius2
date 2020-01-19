@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 use App\Entity\Proverb;
@@ -12,7 +12,7 @@ use App\Entity\Proverb;
  */
 class ProverbRepository extends ServiceEntityRepository implements iRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Proverb::class);
     }

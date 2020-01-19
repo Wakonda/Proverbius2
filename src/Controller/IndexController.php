@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Form\Type\IndexSearchType;
 use App\Service\Captcha;
@@ -27,6 +27,8 @@ use App\Entity\Tag;
 
 use Spipu\Html2Pdf\Html2Pdf;
 use MatthiasMullie\Minify;
+
+use Knp\Component\Pager\PaginatorInterface;
 
 class IndexController extends AbstractController
 {
@@ -188,12 +190,11 @@ class IndexController extends AbstractController
 	}
 	// END TAG
 
-	public function byImagesAction(Request $request)
+	public function byImagesAction(Request $request, PaginatorInterface $paginator)
 	{
 		$entityManager = $this->getDoctrine()->getManager();
 		$query = $entityManager->getRepository(ProverbImage::class)->getPaginator($request->getLocale());
-		
-		$paginator  = $this->get('knp_paginator');
+
 		$pagination = $paginator->paginate(
 			$query, /* query NOT result */
 			$request->query->getInt('page', 1), /*page number*/
