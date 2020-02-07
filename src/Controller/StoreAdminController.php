@@ -96,7 +96,7 @@ class StoreAdminController extends AbstractController
 		
 		$this->checkForDoubloon($translator, $entity, $form);
 
-		if($entity->getPhoto() == null or empty($entity->getPhoto()["title"]) or empty($entity->getPhoto()["content"]))
+		if($form->has("photo") and ($entity->getPhoto() == null or empty($entity->getPhoto()["title"]) or empty($entity->getPhoto()["content"])))
 			$form->get("photo")["name"]->addError(new FormError($translator->trans("This value should not be blank.", array(), "validators")));
 
 		if($form->isValid())
@@ -107,7 +107,7 @@ class StoreAdminController extends AbstractController
 			$entity->setPhoto($title);
 			$entityManager = $this->getDoctrine()->getManager();
 			
-			if(empty($entity->getBiography())) {
+			if(empty($entity->getBiography()) and !empty($form->get("newBiography")->getData())) {
 				$biography = new Biography();
 				$biography->setTitle($form->get("newBiography")->getData());
 				$biography->setLanguage($entityManager->getRepository(Language::class)->findOneBy(["abbreviation" => $entity->getLanguage()->getAbbreviation()]));
@@ -159,6 +159,7 @@ class StoreAdminController extends AbstractController
 		
 		if($form->isValid())
 		{
+			$title = null;
 			if(!is_null($entity->getPhoto()) and (!empty($entity->getPhoto()["title"]) or !empty($entity->getPhoto()["content"])))
 			{
 				file_put_contents(Page::PATH_FILE.$entity->getPhoto()["title"], $entity->getPhoto()["content"]);
@@ -171,7 +172,7 @@ class StoreAdminController extends AbstractController
 
 			$entityManager = $this->getDoctrine()->getManager();
 			
-			if(empty($entity->getBiography())) {
+			if(empty($entity->getBiography()) and !empty($form->get("newBiography")->getData())) {
 				$biography = new Biography();
 				$biography->setTitle($form->get("newBiography")->getData());
 				$biography->setLanguage($entityManager->getRepository(Language::class)->findOneBy(["abbreviation" => $entity->getLanguage()->getAbbreviation()]));

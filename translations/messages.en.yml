@@ -58,6 +58,9 @@ store:
     index:
         Store: "Store"
         Search: "Search"
+        MoreInformations: "More informations"
+        UnknownAuthor: "Unknown author"
+        NoProductFound: "No product found"
     author:
         Title: "Title"
         Action: "Action"
@@ -328,6 +331,7 @@ admin:
         Text: "Text"
         Image: "Image"
         Biography: "Biography"
+        EmbedCode: "Embed code"
     biography:
         Title: "Titre"
         Text: "Texte"
