@@ -26,7 +26,7 @@ body{
 	overflow-x: hidden;
 	background: #fff url(../img/bg.png) repeat center center;
 }
-h1{
+h1 {
 	line-height: 40px;
 	margin: 0;
 	padding: 0;
@@ -36,17 +36,29 @@ h1{
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
 
-h1 span{
+h1 span {
 	font-weight: 700;
 }
 
-a{
+figure {
+	padding: 6px;
+    border-radius: .25rem!important;
+    border: 1px solid #dee2e6!important;
+    background-color: #f8f9fa!important;
+}
+
+figure figcaption {
+    font-style: italic;
+    margin-top: .5rem!important;
+	text-align: center;
+}
+
+a {
 	color: #6190ca;
 	text-decoration: none;
 }
 
-p
-{
+p {
 	text-align: justify;
 }
 

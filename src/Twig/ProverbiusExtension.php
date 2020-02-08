@@ -39,7 +39,8 @@ class ProverbiusExtension extends AbstractExtension
 			new TwigFunction('minify_file', array($this, 'minifyFile')),
 			new TwigFunction('count_unread_messages', array($this, 'countUnreadMessagesFunction')),
 			new TwigFunction('code_by_language', array($this, 'getCodeByLanguage')),
-			new TwigFunction('random_image', array($this, 'randomImage'))
+			new TwigFunction('random_image', array($this, 'randomImage')),
+			new TwigFunction('display_file', array($this, 'displayFileManagement'), array('is_safe' => array('html')))
 		);
 	}
 
@@ -148,6 +149,40 @@ class ProverbiusExtension extends AbstractExtension
 			return null;
 		
 		return $imageArray[array_rand($imageArray)];
+	}
+	
+	public function displayFileManagement($entity, $caption = true, $isPDF = false) {
+		$basePath = ($isPDF) ? '' : '/';
+		
+		$class = get_class($entity);
+		$img = null;
+
+		if(method_exists($entity, "getFileManagement") and !empty($entity->getFileManagement())) {
+			$img = $class::PATH_FILE.$entity->getFileManagement()->getPhoto();
+		}
+
+		if(empty($img) or !file_exists($img) or !is_file($img))
+			return '<img src="'.$basePath.'photo/640px-Starry_Night_Over_the_Rhone.jpg" alt="" style="max-width: 400px" class="img-responsive mx-auto d-block" />';
+		
+		$imageSize = getimagesize($img);
+
+		$width = $imageSize[0];
+		$height = $imageSize[1];
+		
+		$max_width = 500;
+				
+		if($width > $max_width)
+		{
+			$height = ($max_width * $height) / $width;
+			$width = $max_width;
+		}
+		
+		$strImg = '<img src="'.$basePath.$img.'" alt="" style="max-width: '.$width.'px;" class="img-responsive mx-auto d-block" />';
+
+		if(!$caption or empty($entity->getFileManagement()->getDescription()))
+			return $strImg;
+		
+		return '<figure class="image">'.$strImg.'<figcaption>'.$entity->getFileManagement()->getDescription().'</figcaption></figure>';
 	}
 	
 	public function getCodeByLanguage($locale)

@@ -66,6 +66,14 @@ store:
         Action: "Action"
     read:
         Abstract: "Abstract"
+fileManagement:
+    index:
+        FileManager: "File manager"
+    form:
+        Description: "Description"
+        Photo: "Photo"
+        Download: "Download"
+        Search: "Search"
 proverb:
     read:
         InPictures: "In pictures ..."

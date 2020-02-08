@@ -34,7 +34,6 @@ class BiographyType extends AbstractType
 			->add('text', TextareaType::class, array(
                 'constraints' => new Assert\NotBlank(), "label" => "admin.biography.Text", 'attr' => array('class' => 'redactor')
             ))
-			->add('photo', FileSelectorType::class, array("label" => "admin.biography.Image", "required" => false, "current_file" => $builder->getData()->getPhoto(), "path_file" => Biography::PATH_FILE))
 			->add('dayBirth', IntegerType::class, array("label" => "admin.biography.BirthDate", "required" => false))
 			->add('monthBirth', IntegerType::class, array("label" => "", "required" => false))
 			->add('yearBirth', IntegerType::class, array("label" => "", "required" => false))
@@ -63,6 +62,7 @@ class BiographyType extends AbstractType
 				'expanded' => false,
 				'placeholder' => 'main.field.ChooseAnOption'
 			))
+			->add('fileManagement', FileManagementSelectorType::class, ["label" => "admin.biography.Image", "required" => false, "folder" => Biography::FOLDER])
             ->add('save', SubmitType::class, array('label' => 'admin.main.Save', 'attr' => array('class' => 'btn btn-success')))
 			;
     }

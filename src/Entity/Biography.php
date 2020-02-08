@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Biography
 {
-	const PATH_FILE = "photo/biography/";
+	const FOLDER = "biography";
+	const PATH_FILE = "photo/".self::FOLDER."/";
 
     /**
      * @ORM\Id
@@ -78,6 +79,11 @@ class Biography
      * @ORM\ManyToOne(targetEntity="App\Entity\Language")
      */
 	protected $language;
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="App\Entity\FileManagement")
+     */
+    protected $fileManagement;
 	
 	public function __toString()
 	{
@@ -205,6 +211,16 @@ class Biography
     {
         $this->country = $country;
     }
+	
+	public function getFileManagement()
+	{
+		return $this->fileManagement;
+	}
+	
+	public function setFileManagement($fileManagement)
+	{
+		$this->fileManagement = $fileManagement;
+	}
 	
 	public function getLanguage()
 	{
