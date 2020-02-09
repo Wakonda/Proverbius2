@@ -47,7 +47,7 @@
 		{% set ri = random_image(random) %}
 		{% if ri is not null %}
 			<div class="text-center">
-				<img src="{{ asset('photo/proverb/'~ri) }}" class="text-center" alt="">
+				<img src="{{ asset(constant('\\App\\Entity\\Proverb::PATH_FILE')~ri) }}" class="text-center" alt="">
 			</div>
 		{% else %}
 			<div>
@@ -56,7 +56,7 @@
 		{% endif %}
 		<hr>
 		<p>
-		<a href="{{ path('country', {'id' : random.country.id, 'slug' : random.country.slug }) }}" alt=""><img class="flag" src="{{ asset('photo/country/'~random.country.flag) }}" alt="" height="8" /> Proverbe - {{ random.country.title }}</a>
+		<a href="{{ path('country', {'id' : random.country.id, 'slug' : random.country.slug }) }}" alt=""><img class="flag" src="{{ asset(constant('\\App\\Entity\\Country::PATH_FILE')~random.country.flag) }}" alt="" height="8" /> Proverbe - {{ random.country.title }}</a>
 		</p>
 	{% else %}
 		<div class="alert alert-danger text-center" role="alert">{{ 'main.index.NoProverb'|trans }}</div>

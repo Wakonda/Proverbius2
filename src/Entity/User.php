@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User implements UserInterface, \Serializable
 {
+	const FOLDER = "user";
+	const PATH_FILE = "user/".self::FOLDER."/";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

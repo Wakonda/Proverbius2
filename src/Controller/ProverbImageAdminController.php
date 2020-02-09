@@ -55,7 +55,7 @@ class ProverbImageAdminController extends AbstractController
 		foreach($entities as $entity)
 		{
 			$row = array();
-			$row[] = "<img class='mx-auto d-block' src='/photo/proverb/".$entity->getImage()."'>";
+			$row[] = "<img class='mx-auto d-block' src='/".Proverb::PATH_FILE.$entity->getImage()."'>";
 			
 			$socialNetworkArray = [];
 			

@@ -72,5 +72,5 @@
 </blockquote>
 <hr>
 <p>
-<a href="{{ path('country', {'id' : entity.country.id, 'slug' : entity.country.slug }) }}" alt=""><img class="flag" src="photo/country/{{ entity.country.flag }}" alt="" height="8" /> Proverbe - {{ entity.country.title }}</a>
+<a href="{{ path('country', {'id' : entity.country.id, 'slug' : entity.country.slug }) }}" alt=""><img class="flag" src="{{ constant('\\App\\Entity\\Country::PATH_FILE') }}{{ entity.country.flag }}" alt="" height="8" /> Proverbe - {{ entity.country.title }}</a>
 </p>

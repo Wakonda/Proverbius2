@@ -12,6 +12,9 @@ use App\Service\GenericFunction;
  */
 class Proverb
 {
+	const FOLDER = "proverb";
+	const PATH_FILE = "photo/".self::FOLDER."/";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

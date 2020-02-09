@@ -11,7 +11,7 @@
 		</tr>
 		<tr>
 			<th>{{ 'admin.tag.Photo'|trans }}</th>
-			<td><p class="text-center">{{ ("photo/tag/"~entity.photo)|max_size_image() }}</p></td>
+			<td><p class="text-center">{{ (constant('\\App\\Entity\\Tag::PATH_FILE')~entity.photo)|max_size_image() }}</p></td>
 		</tr>
 		<tr>
 			<th>{{ "admin.form.Language"|trans }}</th>

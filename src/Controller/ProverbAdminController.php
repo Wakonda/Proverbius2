@@ -396,7 +396,7 @@ class ProverbAdminController extends AbstractController
 		if(!empty($imageId)) {
 			$proverbImage = $entityManager->getRepository(ProverbImage::class)->find($imageId);
 			
-			$media = $connection->upload('media/upload', array('media' => $request->getUriForPath('/photo/proverb/'.$proverbImage->getImage())));
+			$media = $connection->upload('media/upload', array('media' => $request->getUriForPath('/'.Proverb::PATH_FILE.$proverbImage->getImage())));
 			$parameters['media_ids'] = implode(',', array($media->media_id_string));
 		}
 
@@ -453,7 +453,7 @@ class ProverbAdminController extends AbstractController
 			return $this->redirect($this->generateUrl("proverbadmin_show", array("id" => $id)));
 		}
 			
-		$bot->pins->create($request->getUriForPath('/photo/proverb/'.$proverbImage->getImage()), $boards[$i]['id'], $request->request->get("pinterest_area"), $this->generateUrl("read", ["id" => $entity->getId(), "slug" => $entity->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL));
+		$bot->pins->create($request->getUriForPath('/'.Proverb::PATH_FILE.$proverbImage->getImage()), $boards[$i]['id'], $request->request->get("pinterest_area"), $this->generateUrl("read", ["id" => $entity->getId(), "slug" => $entity->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL));
 		
 		if(empty($bot->getLastError())) {
 			$session->getFlashBag()->add('message', "Pinterest - ".$translator->trans("admin.index.SentSuccessfully"));
@@ -493,7 +493,7 @@ class ProverbAdminController extends AbstractController
 			
 			$data = [
 				'caption' => $request->request->get("facebook_area"),
-				'url' => $request->getUriForPath('/photo/proverb/'.$proverbImage->getImage())
+				'url' => $request->getUriForPath('/'.Proverb::PATH_FILE.$proverbImage->getImage())
 			];
 			
 			try {
@@ -579,7 +579,7 @@ class ProverbAdminController extends AbstractController
 
 				$imageGenerator->generate($start_x, $start_y, $widthText);
 
-				imagepng($image, "photo/proverb/".$fileName);
+				imagepng($image, "/".Proverb::PATH_FILE.$fileName);
 				imagedestroy($image);
 			}
 			else
@@ -617,7 +617,7 @@ class ProverbAdminController extends AbstractController
 					'y' => $gutter
 				));
 
-				imagepng($image->getResource(), "photo/proverb/".$fileName);
+				imagepng($image->getResource(), Proverb::PATH_FILE.$fileName);
 				imagedestroy($image->getResource());
 				fclose($tmp);
 			}
@@ -649,7 +649,7 @@ class ProverbAdminController extends AbstractController
 		$entityManager->flush();
 		
 		$filesystem = new Filesystem();
-		$filesystem->remove("photo/proverb/".$fileName);
+		$filesystem->remove(Proverb::PATH_FILE.$fileName);
 		
 		$redirect = $this->generateUrl('proverbadmin_show', array('id' => $entity->getId()));
 
