@@ -221,7 +221,7 @@
 			$(function() {
 				cookieChoices.showCookieBar({
 					linkHref: '{{ path("page_display", {"name" : "cookie"}) }}',
-					language: 'fr'
+					language: '{{ app.request.locale }}'
 				});
 			});
 		</script>
