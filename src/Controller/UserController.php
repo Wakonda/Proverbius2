@@ -120,9 +120,8 @@ class UserController extends AbstractController
 			// Send email
 			$body = $this->renderView('User/confirmationInscription_mail.html.twig', array("entity" => $entity));
 
-			$mailer->getTransport()->setStreamOptions(["ssl" => ["verify_peer" => false, "verify_peer_name" => false]]);
 			$message = (new \Swift_Message('Proverbius - '.$translator->trans('user.createAccount.Registration')))
-				->setFrom('amatukami66@gmail.com', "Proverbius")
+				->setFrom('proverbius@wakonda.guru', "Proverbius")
 				->setTo($entity->getEmail())
 				->setBody($body, 'text/html');
 		
@@ -264,9 +263,8 @@ class UserController extends AbstractController
 		// Send email
 		$body = $this->renderView('User/forgottenpassword_mail.html.twig', array("entity" => $entity, "temporaryPassword" => $temporaryPassword));
 		
-		$mailer->getTransport()->setStreamOptions(["ssl" => ["verify_peer" => false, "verify_peer_name" => false]]);
 		$message = (new \Swift_Message("Proverbius - ".$translator->trans('forgottenPassword.index.ForgotYourPassword')))
-			->setFrom('amatukami66@gmail.com', "Proverbius")
+			->setFrom('proverbius@wakonda.guru', "Proverbius")
 			->setTo($entity->getEmail())
 			->setBody($body, 'text/html');
 	

@@ -41,9 +41,8 @@ class SendController extends AbstractController
 				"entity" => $entity
 			));
 
-			$mailer->getTransport()->setStreamOptions(["ssl" => ["verify_peer" => false, "verify_peer_name" => false]]);
 			$message = (new \Swift_Message($data->subject))
-				->setFrom('amatukami66@gmail.com', "Proverbius")
+				->setFrom('proverbius@wakonda.guru', "Proverbius")
 				->setTo($data->recipientMail)
 				->setBody($content, 'text/html');
 		
