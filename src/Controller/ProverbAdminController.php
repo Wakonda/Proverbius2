@@ -468,18 +468,18 @@ class ProverbAdminController extends AbstractController
 	
 	public function facebookAction(Request $request, TranslatorInterface $translator, $id)
 	{		
-		if(getenv("FACEBOOK_APP_ENV") == "dev")
+		if($_ENV["FACEBOOK_APP_ENV") == "dev")
 		{
 			// TEST FACEBOOK
 			$fb = new \Facebook\Facebook([
-			  'app_id' => getenv("FACEBOOK_DEV_APP_ID"),
-			  'app_secret' => getenv("FACEBOOK_DEV_APP_SECRET"),
+			  'app_id' => $_ENV["FACEBOOK_DEV_APP_ID"],
+			  'app_secret' => $_ENV["FACEBOOK_DEV_APP_SECRET"],
 			  'default_graph_version' => 'v2.10'
 			]);
 			
-			$userId = getenv("FACEBOOK_DEV_USER_ID");
-			$token = getenv("FACEBOOK_DEV_TOKEN");
-			$pageId = getenv("FACEBOOK_DEV_PAGE_ID");
+			$userId = $_ENV["FACEBOOK_DEV_USER_ID"];
+			$token = $_ENV["FACEBOOK_DEV_TOKEN"];
+			$pageId = $_ENV["FACEBOOK_DEV_PAGE_ID"];
 			
 			$response = $fb->get("/".$pageId."?fields=access_token", $token);
 			
