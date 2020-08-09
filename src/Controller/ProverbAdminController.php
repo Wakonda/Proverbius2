@@ -380,13 +380,12 @@ class ProverbAdminController extends AbstractController
 
 		$locale = strtoupper($entity->getLanguage()->getAbbreviation());
 		
-		$consumer_key = getenv("TWITTER_CONSUMER_KEY_".$locale);
-		$consumer_secret = getenv("TWITTER_CONSUMER_SECRET_".$locale);
-		$access_token = getenv("TWITTER_ACCESS_TOKEN_".$locale);
-		$access_token_secret = getenv("TWITTER_ACCESS_TOKEN_SECRET_".$locale);
+		$consumer_key = $_ENV["TWITTER_CONSUMER_KEY_".$locale];
+		$consumer_secret = $_ENV["TWITTER_CONSUMER_SECRET_".$locale];
+		$access_token = $_ENV["TWITTER_ACCESS_TOKEN_".$locale];
+		$access_token_secret = $_ENV["TWITTER_ACCESS_TOKEN_SECRET_".$locale];
 
 		$connection = new TwitterOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
-
 		$parameters = [];
 		$parameters["status"] = $request->request->get("twitter_area")." ".$this->generateUrl("read", array("id" => $id, 'slug' => $entity->getSlug()), UrlGeneratorInterface::ABSOLUTE_URL);
 		$imageId = $request->request->get('image_id_tweet');
@@ -395,8 +394,7 @@ class ProverbAdminController extends AbstractController
 
 		if(!empty($imageId)) {
 			$proverbImage = $entityManager->getRepository(ProverbImage::class)->find($imageId);
-			
-			$media = $connection->upload('media/upload', array('media' => $request->getUriForPath('/'.Proverb::PATH_FILE.$proverbImage->getImage())));
+			$media = $connection->upload('media/upload', array('media' => Proverb::PATH_FILE.$proverbImage->getImage()));
 			$parameters['media_ids'] = implode(',', array($media->media_id_string));
 		}
 
@@ -423,9 +421,9 @@ class ProverbAdminController extends AbstractController
 		$entityManager = $this->getDoctrine()->getManager();
 		$entity = $entityManager->getRepository(Proverb::class)->find($id);
 		
-		$mail = getenv("PINTEREST_MAIL");
-		$pwd = getenv("PINTEREST_PASSWORD");
-		$username = getenv("PINTEREST_USERNAME");
+		$mail = $_ENV["PINTEREST_MAIL"];
+		$pwd = $_ENV["PINTEREST_PASSWORD"];
+		$username = $_ENV["PINTEREST_USERNAME"];
 
 		$pinterestBoards = [
 			"Proverbes" => "fr",
