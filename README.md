@@ -1,6 +1,6 @@
 # Proverbius
 
-[Proverbius](https://proverbius.wakonda.guru) is a website written with the framework Symfony 4. Our goal is to bring together all proverbs from all countries all around the world.
+[Proverbius](https://proverbius.wakonda.guru) is a website written with the framework Symfony 5. Our goal is to bring together all proverbs from all countries all around the world.
 
 ## Requirements
 
@@ -16,6 +16,6 @@ The best way to install Proverbius is to use Composer (you can follow the instru
 
 To get started, run simply the following command to start PHP server:
 
-`php bin/console server:run`
+`symfony server:start`
 
 Now, you can visit the link `http://localhost:8000` to see the welcome page.
