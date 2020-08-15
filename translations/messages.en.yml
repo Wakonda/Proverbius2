@@ -61,6 +61,7 @@ store:
         MoreInformations: "More informations"
         UnknownAuthor: "Unknown author"
         NoProductFound: "No product found"
+        Buy: "Buy"
     author:
         Title: "Title"
         Action: "Action"
