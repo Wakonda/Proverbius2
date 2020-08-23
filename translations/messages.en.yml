@@ -259,7 +259,7 @@ admin:
         Version: "Version"
         Store: "Store"
         Tag: "Tag"
-        Biography: "Biographie"
+        Biography: "Biography"
         Create: "Create"
         Read: "Read"
         Update: "Update"

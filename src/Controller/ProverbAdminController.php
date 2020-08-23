@@ -468,7 +468,7 @@ class ProverbAdminController extends AbstractController
 	
 	public function facebookAction(Request $request, TranslatorInterface $translator, $id)
 	{		
-		if($_ENV["FACEBOOK_APP_ENV") == "dev")
+		if($_ENV["FACEBOOK_APP_ENV"] == "dev")
 		{
 			// TEST FACEBOOK
 			$fb = new \Facebook\Facebook([
