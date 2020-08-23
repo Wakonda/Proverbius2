@@ -234,7 +234,6 @@ class ProverbAdminController extends AbstractController
 
 		if(!empty($datas)) {
 			$entity->setLanguage($entityManager->getRepository(Language::class)->find($datas["language"]));
-			$entity->setBiography($entityManager->getRepository(Biography::class)->find($datas["biography"]));
 
 			$url = $datas["url"];
 			$ipProxy = $datas["ipProxy"];
