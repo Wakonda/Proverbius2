@@ -3,6 +3,10 @@ index:
     path: /
     controller: App\Controller\IndexController::indexAction
 
+random:
+    path: /random
+    controller: App\Controller\IndexController::randomAction
+
 change_language:
     path: /change_language/{locale}
     controller: App\Controller\IndexController::changeLanguageAction
@@ -83,8 +87,10 @@ country_datatables:
     controller: App\Controller\IndexController::countryDatatablesAction
 
 byimages:
-    path: /byimages
+    path: /byimages/{page}
     controller: App\Controller\IndexController::byImagesAction
+    defaults:
+        page: 1
 
 bycountries:
     path: /bycountries

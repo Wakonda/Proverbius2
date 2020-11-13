@@ -14,7 +14,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Form\Type\IndexSearchType;
 use App\Service\Captcha;
 use App\Service\Gravatar;
-use App\Service\Pagination;
 
 use App\Entity\Proverb;
 use App\Entity\ProverbImage;
@@ -39,6 +38,14 @@ class IndexController extends AbstractController
 		$random = $entityManager->getRepository(Proverb::class)->getRandomProverb($request->getLocale());
 
         return $this->render('Index/index.html.twig', array('form' => $form->createView(), 'random' => $random));
+    }
+
+    public function randomAction(Request $request)
+    {
+		$entityManager = $this->getDoctrine()->getManager();
+		$random = $entityManager->getRepository(Proverb::class)->getRandomProverb($request->getLocale());
+
+        return $this->render('Index/random.html.twig', array('random' => $random));
     }
 	
 	public function getToken($redirectURL)
@@ -190,14 +197,14 @@ class IndexController extends AbstractController
 	}
 	// END TAG
 
-	public function byImagesAction(Request $request, PaginatorInterface $paginator)
+	public function byImagesAction(Request $request, PaginatorInterface $paginator, $page)
 	{
 		$entityManager = $this->getDoctrine()->getManager();
 		$query = $entityManager->getRepository(ProverbImage::class)->getPaginator($request->getLocale());
 
 		$pagination = $paginator->paginate(
 			$query, /* query NOT result */
-			$request->query->getInt('page', 1), /*page number*/
+			$page, /*page number*/
 			10 /*limit per page*/
 		);
 		
@@ -465,25 +472,21 @@ class IndexController extends AbstractController
 		return $this->render('Index/page.html.twig', array("entity" => $entity));
 	}
 	
-    public function storeAction(Request $request, Pagination $pagination, $page)
+    public function storeAction(Request $request, PaginatorInterface $paginator, $page)
     {
-		$em = $this->getDoctrine()->getManager();
+		$entityManager = $this->getDoctrine()->getManager();
+		$querySearch = $request->request->get("query", null);
+		$query = $entityManager->getRepository(Store::class)->getProducts($querySearch, $request->getLocale());
 
-		$query = $request->request->get("query", null);
-		$page = (empty(intval($page))) ? 1 : $page;
-		$nbMessageByPage = 12;
-		
-		$entities = $em->getRepository(Store::class)->getProducts($nbMessageByPage, $page, $query, $request->getLocale());
-		$totalEntities = $em->getRepository(Store::class)->getProducts(0, 0, $query, $request->getLocale(), true);
-		
-		$links = $pagination->setPagination(['url' => 'store'], $page, $totalEntities, $nbMessageByPage);
+		$pagination = $paginator->paginate(
+			$query, /* query NOT result */
+			$page, /*page number*/
+			10 /*limit per page*/
+		);
 
-		return $this->render('Index/store.html.twig', array(
-			'entities' => $entities,
-			'page' => $page,
-			'query' => $query,
-			'links' => $links
-		));
+		$pagination->setCustomParameters(['align' => 'center']);
+		
+		return $this->render('Index/store.html.twig', ['pagination' => $pagination, "query" => $querySearch]);
     }
 
 	public function readStoreAction($id)
