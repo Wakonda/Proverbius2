@@ -12,17 +12,6 @@
 			$(".tagit").tagit({
 				allowSpaces: true
 			});
-
-			/*$("#generate_random").on("click", function() {
-				$.ajax({
-					type: "GET",
-					url: "{{ path('random') }}",
-					success: function(data)
-					{
-						$("#random_container").html(data);
-					}
-				});
-			});*/
 		});
 	</script>
 {% endblock %}
@@ -53,5 +42,5 @@
 		{{ form_rest(form) }}
 	{{ form_end(form) }}
 	<hr class="flare">
-		{% include "Index/random.html.twig" with {'random' : random} %}
+	{% include "Index/random.html.twig" with {'random' : random} %}
 {% endblock %}
