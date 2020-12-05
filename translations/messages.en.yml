@@ -217,7 +217,7 @@ editPassword:
         PasswordValidation: "Password (Validation)"
 contact:
     field:
-        YourMessageHasBeenSentSuccessfully: "Votre message a été envoyé avec succès !"
+        YourMessageHasBeenSentSuccessfully: "Your message has been sent successfully!"
         ContactUs: "Contact us"
         Message: "Message"
         Email: "Email"

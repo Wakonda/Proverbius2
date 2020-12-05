@@ -96,8 +96,8 @@ search:
         None: "Aucun"
 send:
     index:
-        AutomaticallyAddedPost: "La poésie sera automatiquement ajoutée à votre message"
-        SendFriend: "Envoyez cette poésie à un ami"
+        AutomaticallyAddedPost: "Le proverbe sera automatiquement ajoutée à votre message"
+        SendFriend: "Envoyez ce proverbe à un ami"
         Infos: "Infos"
         YourMessageHasBeenSentSuccessfully: "Votre message a été envoyé avec succès !"
         Somebody: "Quelqu'un"
@@ -239,7 +239,7 @@ vote:
     field:
         Error: "Erreur"
         YouMustBeLoggedInToVote: "Vous devez être connecté pour pouvoir voter !"
-        YouHaveAlreadyVotedForThis: "Vous avez déjà voté pour cette poésie"
+        YouHaveAlreadyVotedForThis: "Vous avez déjà voté pour ce proverbe"
 version:
     index:
         Version: "Version"
